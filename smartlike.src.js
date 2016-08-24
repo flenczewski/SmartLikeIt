@@ -66,7 +66,7 @@
     function loadFacebookLikeButtons() {
 
         if(!loadedAllButtons) {
-            nodes = Array.prototype.slice.call(likeButtons,0);
+            var nodes = Array.prototype.slice.call(likeButtons,0);
             nodes.forEach(function(node){
                 loadButton(node);
             });
