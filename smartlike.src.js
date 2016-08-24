@@ -1,6 +1,5 @@
 (function(w,d){
 
-
     var loadedAllButtons = false;
     var likeButtons = d.querySelectorAll('.fb-like');
     var facebookDomain = 'https://www.facebook.com';
@@ -11,6 +10,10 @@
             + '/plugins/like.php?href='
             + siteUrl
             +'&layout=button_count&action=like&size=small&show_faces=false&share=false';
+    }
+
+    function getFacebookShareUrl(siteUrl) {
+        return facebookDomain +'/sharer/sharer.php?u='+ encodeURI(siteUrl);
     }
 
     // facebook like button
@@ -50,14 +53,15 @@
     }
 
     // static "share button"
-    var nodes = Array.prototype.slice.call(likeButtons,0);
-    nodes.forEach(function(node) {
-        node.addEventListener('click', function(){
-            window.open(facebookDomain +'/sharer/sharer.php?u='+ encodeURI(node.getAttribute('data-href')), '_blank', "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=" + 500 + ", height=" + 400 + ", top=" + (screen.height / 2 - 400 / 2) + ", left=" + (screen.width / 2 - 500 / 2));
+    function makeStaticShareButtons() {
+        var nodes = Array.prototype.slice.call(likeButtons, 0);
+        nodes.forEach(function(node) {
+            node.addEventListener('click', function(){
+                window.open(getFacebookShareUrl(node.getAttribute('data-href')), '_blank', "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=" + 500 + ", height=" + 400 + ", top=" + (screen.height / 2 - 400 / 2) + ", left=" + (screen.width / 2 - 500 / 2));
+            });
+            node.addEventListener('mouseover', function(){loadButton(node);});
         });
-        node.addEventListener('mouseover', function(){loadButton(node);});
-    });
-
+    }
 
     function loadFacebookLikeButtons() {
 
@@ -71,10 +75,16 @@
         }
     }
 
-//        if (window.addEventListener) {
-//            window.addEventListener("load", loadFacebookLikeButtons, false);
-//        } else if (window.attachEvent) {
-//            window.attachEvent("onload", loadFacebookLikeButtons);
-//        } else { window.onload = loadFacebookLikeButtons; }
+    function init() {
+        makeStaticShareButtons();
+    }
+
+    init();
+
+    // if (window.addEventListener) {
+    //    window.addEventListener("load", loadFacebookLikeButtons, false);
+    // } else if (window.attachEvent) {
+    //    window.attachEvent("onload", loadFacebookLikeButtons);
+    // } else { window.onload = loadFacebookLikeButtons; }
 
 })(window,document);
