@@ -3,8 +3,10 @@
     var loadedAllButtons = false;
     var likeButtons = d.querySelectorAll('.fb-like');
     var facebookDomain = 'https://www.facebook.com';
-    var buttonWidth = 113;
-    var buttonHeight = 21;
+    var config = {
+        'buttonWidth': 113,
+        'buttonHeight': 21
+    };
 
     // facebook like url
     function getFacebookLikeUrl(siteUrl) {
@@ -23,7 +25,7 @@
     function getFacebookLikeButton(siteUrl) {
         return '<iframe class="fb-like-iframe" src="'
             + getFacebookLikeUrl(siteUrl)
-            + '" width="'+ buttonWidth +'" height="'+ buttonHeight +'" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>';
+            + '" width="'+ config.buttonWidth +'" height="'+ config.buttonHeight +'" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>';
     }
 
     // facebook preconnect
@@ -61,7 +63,7 @@
             node.addEventListener('click', function(){
                 window.open(getFacebookShareUrl(node.getAttribute('data-href')), '_blank',
                     "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no," +
-                    "width=" + 500 + ", height=" + 400 + ", top=" + (screen.height / 2 - 400 / 2) + ", left=" + (screen.width / 2 - 500 / 2));
+                    "width="+ 500 +", height="+ 400 +", top="+ (screen.height/2 - 400/2) +", left="+ (screen.width/2 - 500/2));
             });
             node.addEventListener('mouseover', function(){loadButton(node);});
         });
