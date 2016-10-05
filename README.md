@@ -1,6 +1,9 @@
 # SmartLikeIt
 Smart Facebook "Like" button
 
+Demo: 
+http://fabian.art.pl/smartlike/example/
+
 # Sample usage
 
 HTML like normal Facebook Like Button: https://developers.facebook.com/docs/plugins/like-button 
