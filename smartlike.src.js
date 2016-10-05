@@ -88,18 +88,6 @@
         });
     }
 
-    // function loadFacebookLikeButtons() {
-    //
-    //     if(!loadedAllButtons) {
-    //         var nodes = Array.prototype.slice.call(likeButtons,0);
-    //         nodes.forEach(function(node){
-    //             loadButton(node);
-    //         });
-    //
-    //         loadedAllButtons = true;
-    //     }
-    // }
-
     function init() {
         _preconnect(facebookDomain);
         setStyle();
@@ -107,11 +95,5 @@
     }
 
     init();
-
-    // if (window.addEventListener) {
-    //    window.addEventListener("load", loadFacebookLikeButtons, false);
-    // } else if (window.attachEvent) {
-    //    window.attachEvent("onload", loadFacebookLikeButtons);
-    // } else { window.onload = loadFacebookLikeButtons; }
 
 })(window,document);
