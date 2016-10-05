@@ -4,16 +4,22 @@
     var likeButtons = d.querySelectorAll('.fb-like');
     var facebookDomain = 'https://www.facebook.com';
     var config = {
-        'buttonWidth': 113,
-        'buttonHeight': 21
+        'buttonWidth': 75,
+        'buttonHeight': 20
     };
+
+    function setStyle() {
+        var sheet = document.createElement('style');
+        sheet.innerHTML = ".fb-like{background:#4267b2 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////98JRy6AAAAH3RSTlMA8PwB/iHFXDT14frmdqsbMqj46CkU2e6g+37e/eseQ0l9HQAAAFtJREFUeNqVzUcKwDAMRFG5pffe5/63DI6xsQNZZHb/IRB9L2rDFjnGAGJA+Z2kyITXdQGU5K3Cs7nRwcCoM9APGgCQNDCRBW5gcbAa2F4XXDnYcUjgvMh++bMbX5wJSDyqfBcAAAAASUVORK5CYII=') 3px 2px no-repeat;overflow:hidden;color:#fff;cursor:pointer;-webkit-font-smoothing:antialiased;-webkit-user-select:none;white-space:nowrap;font-family:helvetica,arial,sans-serif;border-radius:3px;font-size:11px;padding:0;height:20px;display:inline-block}.fb-like:after{content:'Lubię to!';font-weight:700;padding:4px 4px 4px 23px;display:block}.fb-like-loaded{background:none}";
+        document.body.appendChild(sheet);
+    }
 
     // facebook like url
     function getFacebookLikeUrl(siteUrl) {
         return facebookDomain
             + '/plugins/like.php?href='
             + siteUrl
-            +'&layout=button_count&action=like&size=small&show_faces=false&share=false';
+            +'&layout=button&action=like&size=small&show_faces=false&share=false';
     }
 
     // facebook share url
@@ -65,7 +71,20 @@
                     "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no," +
                     "width="+ 500 +", height="+ 400 +", top="+ (screen.height/2 - 400/2) +", left="+ (screen.width/2 - 500/2));
             });
-            node.addEventListener('mouseover', function(){loadButton(node);});
+
+            // trigger: hover
+            if(node.getAttribute('data-trigger').toLowerCase() == 'hover') {
+                node.addEventListener('mouseover', function () {
+                    loadButton(node);
+                });
+            }
+
+            // trigger: visible
+            if(node.getAttribute('data-trigger').toLowerCase() == 'visible') {
+                loadButton(node);
+            }
+
+
         });
     }
 
@@ -83,6 +102,7 @@
 
     function init() {
         _preconnect(facebookDomain);
+        setStyle();
         makeStaticShareButtons();
     }
 
