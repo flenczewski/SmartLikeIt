@@ -20,7 +20,7 @@ and load SmartLikeIt library:
 </script>
 ```
 
-additional "smart" params:
+Additional "smart" params:
 
 * data-trigger="hover" - load facebook like button on hover 
 * data-trigger="visible" - default load
