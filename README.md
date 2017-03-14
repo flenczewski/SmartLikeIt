@@ -25,6 +25,6 @@ Additional "smart" params:
 * data-trigger="hover" - load facebook like button on hover 
 * data-trigger="visible" - default load
 
-Benchmark
+# Benchmark
 
 ![alt tag](http://fabian.art.pl/smartlike/example/smartlike-bench.png)
